@@ -28,7 +28,7 @@ class PortfolioController extends Controller
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         }
 
         Portfolio::create($attributes);
@@ -49,7 +49,7 @@ class PortfolioController extends Controller
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         } else {
             $attributes['image'] = $portfolio->image;
         }

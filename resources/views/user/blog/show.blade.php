@@ -38,7 +38,7 @@
                 <div class="col-lg-8">
                     <div class="standard__blog__post">
                         <div class="standard__blog__thumb">
-                            <img src="{{ asset('storage/' . $blog->image) }}" alt="">
+                            <img src="{{ asset($blog->image) }}" alt="">
                         </div>
                         <div class="blog__details__content services__details__content">
                             <ul class="blog__post__meta">
@@ -65,7 +65,7 @@
                                             <div class="blog__next__prev__post">
                                                 <div class="blog__next__prev__thumb">
                                                     <a href="{{ route('blog.show', $previous->slug) }}">
-                                                        <img src="{{ asset('storage/' . $previous->image) }}"
+                                                        <img src="{{ asset($previous->image) }}"
                                                             alt="">
                                                     </a>
                                                 </div>
@@ -87,7 +87,7 @@
                                             <div class="blog__next__prev__post">
                                                 <div class="blog__next__prev__thumb">
                                                     <a href="{{ route('blog.show', $next->slug) }}">
-                                                        <img src="{{ asset('storage/' . $next->image) }}"
+                                                        <img src="{{ asset($next->image) }}"
                                                             alt="">
                                                     </a>
                                                 </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-lg-4">
                     <aside class="blog__sidebar">
-                        
+
                         <div class="widget">
                             <h4 class="widget-title">Recent Blog</h4>
                             <ul class="rc__post">

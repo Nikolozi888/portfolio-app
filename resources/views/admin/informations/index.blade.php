@@ -47,7 +47,7 @@
                                                 <td data-field="title">{{ $information->title }}</td>
                                                 <td data-field="excerpt">{!! Str::limit($information->excerpt, 50) !!}</td>
                                                 <td data-field="image"><img style="width: 100px"
-                                                    src="{{ asset('storage/' . $information->image) }}"></td>
+                                                    src="{{ asset($information->image) }}"></td>
                                                 <td style="width: 100px">
                                                     <a href="{{ route('admin.informations.edit', $information->id) }}"
                                                         class="btn btn-outline-secondary btn-lg edit" title="Edit">

@@ -50,7 +50,7 @@
                                                     <td data-field="description">{!! Str::limit($portfolio->body, 50) !!}</td>
                                                     <td data-field="category">{{ $portfolio->category }}</td>
                                                     <td data-field="image"><img style="width: 100px"
-                                                            src="{{ asset('storage/' . $portfolio->image) }}"></td>
+                                                            src="{{ asset($portfolio->image) }}"></td>
                                                     <td style="width: 100px">
                                                         <a href="{{ route('admin.portfolios.edit', $portfolio->id) }}"
                                                             class="btn btn-outline-secondary btn-lg edit" title="Edit">

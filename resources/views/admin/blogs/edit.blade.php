@@ -59,7 +59,7 @@
                                     <input type="file" class="form-control" value="{{ $blog->image }}" id="customFile"
                                         name="image">
                                     <x-backend.error name="image" />
-                                    <img width="200px" src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image">
+                                    <img width="200px" src="{{ asset($blog->image) }}" alt="Blog Image">
                                 </div>
                                 <div class="mb-3">
                                     <h4 class="card-title">Category</h4>

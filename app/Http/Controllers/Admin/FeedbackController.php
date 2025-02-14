@@ -30,7 +30,7 @@ class FeedbackController extends Controller
             foreach ($request->file('images') as $index => $file) {
                 $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
                 $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = $path;
+                $gallery_images[] = 'storage/' . $path;
             }
         }
 
@@ -59,7 +59,7 @@ class FeedbackController extends Controller
             foreach ($request->file('images') as $index => $file) {
                 $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
                 $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = $path;
+                $gallery_images[] = 'storage/' . $path;
             }
         }
 

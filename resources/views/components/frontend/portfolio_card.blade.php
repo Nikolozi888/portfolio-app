@@ -1,6 +1,6 @@
 <div class="portfolio__item">
     <div class="portfolio__thumb">
-        <img src="{{ asset('storage/' . $portfolio->image) }}"
+        <img src="{{ asset($portfolio->image) }}"
             alt="Portfolio image">
     </div>
     <div class="portfolio__overlay__content">

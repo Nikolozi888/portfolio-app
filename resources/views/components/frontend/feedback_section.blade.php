@@ -8,7 +8,7 @@
                     @endphp
                     @if ($multiImage)
                         @foreach (explode(',', $multiImage->images) as $image)
-                            <li><img src="{{ asset('storage/' . $image) }}" alt=""></li>
+                            <li><img src="{{ asset($image) }}" alt=""></li>
                         @endforeach
                     @else
                         <p>No images found.</p>

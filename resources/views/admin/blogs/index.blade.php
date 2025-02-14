@@ -56,7 +56,7 @@
                                                     </td>
                                                     <td data-field="tag">{{ $blog->author }}</td>
                                                     <td data-field="tag"><img style="width: 100px"
-                                                            src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image">
+                                                            src="{{ asset($blog->image) }}" alt="Blog Image">
                                                     </td>
                                                     <td style="width: 100px">
                                                         <a href="{{ route('admin.blogs.edit', $blog->id) }}"

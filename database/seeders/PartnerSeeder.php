@@ -13,10 +13,6 @@ class PartnerSeeder extends Seeder
      */
     public function run(): void
     {
-        Partners::create([
-            'name' => 'I proud to have collaborated with some awesome companies',
-            'excerpt' => "I'm a bit of a digital product junky. Over the years, I've used hundreds of web and mobile apps in different industries and verticals. Eventually, I decided that it would be a fun challenge to try designing and building my own",
-            'images' => '',
-        ]);
+        Partners::factory(1)->create();
     }
 }

@@ -5,7 +5,7 @@
                 <ul class="about__icons__wrap">
                     @foreach (explode(',', $about->images) as $image)
                         <li class="now-in-view">
-                            <img class="light" src="{{ asset('storage/' . $image) }}" alt="">
+                            <img class="light" src="{{ asset($image) }}" alt="">
                         </li>
                     @endforeach
                 </ul>

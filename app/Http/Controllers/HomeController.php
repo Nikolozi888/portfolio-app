@@ -21,7 +21,7 @@ class HomeController extends Controller
         $portfolios = Portfolio::all();
         $partners = Partners::all();
         $feedbacks = Feedback::all();
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->take(3)->get();
 
         return view('user.home', compact('userInfo', 'about', 'services', 'portfolios', 'partners', 'feedbacks', 'blogs'));
     }

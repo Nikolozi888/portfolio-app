@@ -51,9 +51,9 @@
                                     <h4 class="card-title">Images</h4>
                                     <input type="file" class="form-control" id="customFile" name="images[]" multiple>
                                     <x-backend.error name="images" />
-                                    @foreach (explode(',', $about->images) as $image)
+                                    @foreach (explode(',', $partner->images) as $image)
                                         <div id="imagePreviewContainer" style="margin-top: 10px;">
-                                            <img src="{{ asset('storage/' . $image) }}" alt="Uploaded Image"
+                                            <img src="{{ asset($image) }}" alt="Uploaded Image"
                                                 style="max-width: 100px; max-height: 100px; margin-right: 10px;">
                                         </div>
                                     @endforeach

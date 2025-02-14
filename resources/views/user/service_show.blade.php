@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="services__details__thumb">
-                            <img src="{{ asset('storage/' . $service->image) }}" alt="">
+                            <img src="{{ asset($service->image) }}" alt="">
                         </div>
                         <div class="services__details__content">
                             <h2 class="title">{{ $service->title }}</h2>

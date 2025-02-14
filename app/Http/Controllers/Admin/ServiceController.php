@@ -9,23 +9,26 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $services = Service::all();
 
         return view('admin.services.index', compact('services'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.services.create');
     }
 
-    public function store(ServiceRequest $request) {
+    public function store(ServiceRequest $request)
+    {
         $attributes = $request->validated();
 
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         }
 
         Service::create($attributes);
@@ -34,17 +37,19 @@ class ServiceController extends Controller
         return redirect()->route('admin.services.index')->with($message);
     }
 
-    public function edit(Service $service) {
+    public function edit(Service $service)
+    {
         return view('admin.services.edit', compact('service'));
     }
 
-    public function update(ServiceRequest $request, Service $service) {
+    public function update(ServiceRequest $request, Service $service)
+    {
         $attributes = $request->validated();
 
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         } else {
             $attributes['image'] = $service->image;
         }
@@ -55,7 +60,8 @@ class ServiceController extends Controller
         return redirect()->route('admin.services.index')->with($message);
     }
 
-    public function destroy(Service $service) {
+    public function destroy(Service $service)
+    {
         $service->delete();
 
         $message = array('message' => 'Service Deleted SuccessFully', 'type' => 'success');

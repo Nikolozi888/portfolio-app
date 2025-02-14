@@ -51,7 +51,7 @@
                                     <x-backend.error name="images" />
                                     @foreach (explode(',', $about->images) as $image)
                                         <div id="imagePreviewContainer" style="margin-top: 10px;">
-                                            <img src="{{ asset('storage/' . $image) }}" alt="Uploaded Image"
+                                            <img src="{{ asset($image) }}" alt="Uploaded Image"
                                                 style="max-width: 100px; max-height: 100px; margin-right: 10px;">
                                         </div>
                                     @endforeach

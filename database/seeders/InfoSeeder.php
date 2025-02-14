@@ -13,12 +13,7 @@ class InfoSeeder extends Seeder
      */
     public function run(): void
     {
-        Information::create([
-            'title' => 'I will give you Best Product in the shortest time',
-            'excerpt' => "I'm a Rasalina-based product design & visual designer focused on crafting clean & user-friendly experiences",
-            'video' => '',
-            'image' => ''
-        ]);
+        Information::factory(1)->create();
     }
 
 }

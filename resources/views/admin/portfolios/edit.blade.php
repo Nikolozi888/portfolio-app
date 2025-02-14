@@ -53,7 +53,7 @@
                                     <input type="file" class="form-control" value="{{ $portfolio->image }}"
                                         id="customFile" name="image">
                                         <x-backend.error name="image" />
-                                    <img width="200px" src="{{ asset('storage/' . $portfolio->image) }}" alt="Blog Image">
+                                    <img width="200px" src="{{ asset($portfolio->image) }}" alt="Blog Image">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Description</label>

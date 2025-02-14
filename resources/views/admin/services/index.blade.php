@@ -52,7 +52,7 @@
                                                     <td data-field="excerpt">{!! Str::limit($service->excerpt, 50) !!}</td>
                                                     <td data-field="description">{!! Str::limit($service->excerpt, 50) !!}</td>
                                                     <td data-field="tag"><img style="width: 100px"
-                                                            src="{{ asset('storage/' . $service->image) }}"
+                                                            src="{{ asset($service->image) }}"
                                                             alt="Blog Image">
                                                     </td>
                                                     <td style="width: 100px">

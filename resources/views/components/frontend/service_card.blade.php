@@ -2,7 +2,7 @@
     <div class="services__item">
         <div class="services__thumb">
             <a href="{{ route('service_show',$service->id) }}"><img
-                    src="{{ asset('storage/' . $service->image) }}"
+                    src="{{ asset($service->image) }}"
                     alt="Service Image"></a>
         </div>
         <div class="services__content">

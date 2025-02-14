@@ -28,7 +28,7 @@ class InformationController extends Controller
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         }
 
         Information::create($attributes);
@@ -51,7 +51,7 @@ class InformationController extends Controller
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $attributes['image'] = 'storage/' . $imagePath;
         } else {
             $attributes['image'] = $information->image;
         }

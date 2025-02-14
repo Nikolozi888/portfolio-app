@@ -28,17 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PortfolioSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(TagSeeder::class);
-
-        $user = User::factory()->create([
-            'name' => 'User',
-            'username' => 'User',
-            'email' => 'user@example.com',
-            'address' => 'georgia',
-            'phone' => '123456789',
-            'password' => bcrypt('123456789'),
-        ]);
-
-        $user->assignRole('admin');
-
+        $this->call(MultiImagesSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

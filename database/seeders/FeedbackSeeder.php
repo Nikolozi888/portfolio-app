@@ -13,10 +13,6 @@ class FeedbackSeeder extends Seeder
      */
     public function run(): void
     {
-        Feedback::create([
-            'author' => 'Author 1',
-            'body' => 'Good Body',
-            'images' => '',
-        ]);
+        Feedback::factory(2)->create();
     }
 }

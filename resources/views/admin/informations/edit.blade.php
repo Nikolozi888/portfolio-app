@@ -50,7 +50,7 @@
 
                                 <input type="file" class="form-control" id="customFile" name="image">
                                 <x-backend.error name="image" />
-                                <img width="200px" src="{{ asset('storage/' . $information->image) }}" alt="Image">
+                                <img width="200px" src="{{ asset($information->image) }}" alt="Image">
                             </div>
                             <div class="mb-3">
                                 <h4 class="card-title">Video Link</h4>

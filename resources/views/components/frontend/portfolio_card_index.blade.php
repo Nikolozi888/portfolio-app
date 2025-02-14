@@ -3,7 +3,7 @@
         <div class="col-lg-6 col-md-10">
             <div class="portfolio__inner__thumb">
                 <a href={{ route('portfolio.show',$card->id) }}>
-                    <img src="{{ asset('storage/' . $card->image) }}" alt="">
+                    <img src="{{ asset($card->image) }}" alt="">
                 </a>
             </div>
         </div>
