@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('experience');
             $table->longText('excerpt');
             $table->longText('description');
-            $table->text('images')->nullable();
             $table->timestamps();
         });
     }

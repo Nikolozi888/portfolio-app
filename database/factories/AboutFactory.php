@@ -20,19 +20,9 @@ class AboutFactory extends Factory
     {
         return [
             'title' => 'I transform ideas into remarkable digital products',
-            'images' => implode(',', [
-                'Frontend/assets/img/icons/xd_light.png',
-                'Frontend/assets/img/icons/sketch_light.png',
-                'Frontend/assets/img/icons/illustrator_light.png',
-                'Frontend/assets/img/icons/illustrator_light.png',
-                'Frontend/assets/img/icons/illustrator_light.png',
-                'Frontend/assets/img/icons/photoshop_light.png',
-                'Frontend/assets/img/icons/figma_light.png',
-            ]),
             'experience' => '20+ years of experience in product design',
             'excerpt' => 'I specialize in UX/UI design, solving complex design problems to create intuitive user experiences. My goal is to craft seamless interfaces that enhance usability and engagement.',
             'description' => 'With over two decades of experience, I have honed my skills in UX/UI design, ensuring every product is both visually appealing and functionally effective. My expertise lies in understanding user behavior, designing seamless interactions, and creating intuitive interfaces.
-
              My passion for design goes beyond aesthetics—I focus on usability, accessibility, and innovation to enhance digital experiences. I thrive on solving design challenges and developing creative solutions that make interfaces more user-friendly and enjoyable.'
         ];
     }

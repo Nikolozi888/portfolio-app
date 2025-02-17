@@ -57,8 +57,9 @@
                                 <div class="mb-3">
                                     <h4 class="card-title">Image</h4>
                                     <input type="file" class="form-control" value="{{ $blog->image }}" id="customFile"
-                                        name="image">
+                                        name="image" onchange="previewImage();">
                                     <x-backend.error name="image" />
+                                    <div id="imagePreviewContainer" style="margin-top: 10px; margin-bottom: 20px;"></div>
                                     <img width="200px" src="{{ asset($blog->image) }}" alt="Blog Image">
                                 </div>
                                 <div class="mb-3">

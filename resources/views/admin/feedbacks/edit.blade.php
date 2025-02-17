@@ -48,18 +48,6 @@
                                     <x-backend.error name="body" />
                                 </div>
 
-                                <div class="mb-3">
-                                    <h4 class="card-title">Images</h4>
-                                    <input type="file" class="form-control" id="customFile" name="images[]" multiple>
-                                    <x-backend.error name="images" />
-                                    @foreach (explode(',', $about->images) as $image)
-                                        <div id="imagePreviewContainer" style="margin-top: 10px;">
-                                            <img src="{{ asset($image) }}" alt="Uploaded Image"
-                                                style="max-width: 100px; max-height: 100px; margin-right: 10px;">
-                                        </div>
-                                    @endforeach
-                                </div>
-
                                 <button class="btn btn-primary" type="submit">Submit form</button>
                             </form>
 

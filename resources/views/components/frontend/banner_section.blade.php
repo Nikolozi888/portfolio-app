@@ -10,8 +10,7 @@
                 <div class="banner__content">
                     <h2 class="title wow fadeInUp" data-wow-delay=".2s">{{ $userInfo->title }}</h2>
                     <p class="wow fadeInUp" data-wow-delay=".4s">{{ $userInfo->excerpt }}</p>
-                    <a href="/about" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">more about
-                        me</a>
+                    <a href="/about" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">more about me</a>
                 </div>
             </div>
         </div>

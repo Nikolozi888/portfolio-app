@@ -29,6 +29,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(MultiImagesSeeder::class);
+        $this->call(AddressInfoSeeder::class);
+        $this->call(ContactInfoSeeder::class);
+        $this->call(MessageInfoSeeder::class);
+        $this->call(PartnerMultiImagesSeeder::class);
+        $this->call(SocialInfoSeeder::class);
+        $this->call(AboutMultiImagesSeeder::class);
         $this->call(UserSeeder::class);
     }
 }

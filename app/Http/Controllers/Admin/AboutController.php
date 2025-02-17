@@ -26,20 +26,7 @@ class AboutController extends Controller
     {
         $attributes = $request->validated();
 
-        $current_timestamp = Carbon::now()->timestamp;
-
-        $gallery_images = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
-            }
-        }
-
-        $attributes['images'] = implode(',', $gallery_images);
-
-
+       
         About::create($attributes);
 
         $message = array('message' => 'About Information Created Successfully', 'type' => 'success');
@@ -57,24 +44,6 @@ class AboutController extends Controller
         $about = About::findOrFail($id);
 
         $attributes = $request->validated();
-
-        $current_timestamp = Carbon::now()->timestamp;
-
-        $gallery_images = [];
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
-            }
-        }
-
-        if (!empty($gallery_images)) {
-            $attributes['images'] = implode(',', $gallery_images);
-        } else {
-            $attributes['images'] = $about->images;
-        }
 
         $about->update($attributes);
 

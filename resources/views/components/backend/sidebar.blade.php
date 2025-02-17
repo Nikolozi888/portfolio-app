@@ -48,6 +48,16 @@
                         @if (App\Models\About::count() == 0)
                             <li><a href="{{ route('admin.about.create') }}">About Create</a></li>
                         @endif
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <span>multiImage</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.about.multiImage.index') }}">All Multi Images</a></li>
+                                <li><a href="{{ route('admin.about.multiImage.create') }}">Multi Images Create</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -106,7 +116,9 @@
                                 <span>multiImage</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('admin.feedbacks.multiImage.create') }}">Multi Images Create</a></li>
+                                <li><a href="{{ route('admin.feedbacks.multiImage.index') }}">All Multi Images</a></li>
+                                <li><a href="{{ route('admin.feedbacks.multiImage.create') }}">Multi Images Create</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -119,6 +131,16 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.partners.index') }}">All Partners</a></li>
                         <li><a href="{{ route('admin.partners.create') }}">Create Partner</a></li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <span>multiImage</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.partners.multiImage.index') }}">All Multi Images</a></li>
+                                <li><a href="{{ route('admin.partners.multiImage.create') }}">Multi Images Create</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -141,6 +163,64 @@
                         <li><a href="{{ route('admin.portfolios.create') }}">Create Portfolio</a></li>
                     </ul>
                 </li>
+
+
+                <li class="menu-title">Page Control</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Contact Us Information</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.contactInfo.index') }}">Contact Us Information</a></li>
+                        @if (App\Models\ContactInfo::count() == 0)
+                            <li><a href="{{ route('admin.contactInfo.create') }}">Contact Us Create</a></li>
+                        @endif
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Address Information</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.addressInfo.index') }}">Address Information</a></li>
+                        @if (App\Models\AddressInfo::count() == 0)
+                            <li><a href="{{ route('admin.addressInfo.create') }}">Address Create</a></li>
+                        @endif
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Social Information</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.socialInfo.index') }}">Social Information</a></li>
+                        @if (App\Models\SocialInfo::count() == 0)
+                            <li><a href="{{ route('admin.socialInfo.create') }}">Social Create</a></li>
+                        @endif
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Contact Form Information</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.messageInfo.index') }}">Contact Form Information</a></li>
+                        @if (App\Models\MessageInfo::count() == 0)
+                            <li><a href="{{ route('admin.messageInfo.create') }}">Contact Form Create</a></li>
+                        @endif
+                    </ul>
+                </li>
+                
 
             </ul>
         </div>

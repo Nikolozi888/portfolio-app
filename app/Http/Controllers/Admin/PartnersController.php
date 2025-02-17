@@ -25,19 +25,6 @@ class PartnersController extends Controller
     {
         $attributes = $request->validated();
 
-        $current_timestamp = Carbon::now()->timestamp;
-
-        $gallery_images = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
-            }
-        }
-
-        $attributes['images'] = implode(',', $gallery_images);
-
         Partners::create($attributes);
 
         $message = array('message' => 'Partner Created SuccessFully', 'type' => 'success');
@@ -52,24 +39,7 @@ class PartnersController extends Controller
     public function update(PartnerRequest $request, Partners $partner)
     {
         $attributes = $request->validated();
-
-        $current_timestamp = Carbon::now()->timestamp;
-
-        $gallery_images = [];
-
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
-            }
-        }
-
-        if (!empty($gallery_images)) {
-            $attributes['images'] = implode(',', $gallery_images);
-        } else {
-            $attributes['images'] = $partner->images;
-        }
+        
         $partner->update($attributes);
 
         $message = array('message' => 'Partner Updated SuccessFully', 'type' => 'success');

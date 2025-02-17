@@ -36,6 +36,8 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <a href="{{ route('home') }}" class="dropdown-item"> Main Page</a>
+                    <a href="{{ route('admin.profile.edit') }}" class="dropdown-item"> Profile</a>
+                    <a href="{{ route('admin.profile.password.edit') }}" class="dropdown-item"> Edit Password</a>
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

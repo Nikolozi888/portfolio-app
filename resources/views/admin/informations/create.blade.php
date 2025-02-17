@@ -39,28 +39,28 @@
                                     <label for="validationCustom01" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="validationCustom01" placeholder="Title"
                                         name="title" value="{{ old('title') }}">
-                                        <x-backend.error name="title" />
+                                    <x-backend.error name="title" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="validationCustom01" class="form-label">Excerpt</label>
                                     <input type="text" class="form-control" id="validationCustom01" placeholder="Excerpt"
                                         name="excerpt" value="{{ old('excerpt') }}">
-                                        <x-backend.error name="excerpt" />
+                                    <x-backend.error name="excerpt" />
                                 </div>
                                 <div class="mb-3">
                                     <h4 class="card-title">Image</h4>
-                                    <input type="file" class="form-control" id="customFile" name="image">
+                                    <input type="file" class="form-control" id="customFile" name="image"
+                                        onchange="previewImage();" onchange="previewImage();">
                                     <x-backend.error name="image" />
-                                    <img id="imagePreview" src="#" alt="Uploaded Image"
-                                        style="display: none; max-width: 200px; margin-top: 10px;">
+                                    <div id="imagePreviewContainer" style="margin-top: 10px;"></div>
                                 </div>
 
                                 <div class="mb-3">
                                     <h4 class="card-title">Video Link</h4>
 
-                                    <input type="text" class="form-control" id="validationCustom01"
-                                        placeholder="Video Link" name="video" value="{{ old('video') }}">
-                                        <x-backend.error name="video" />
+                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Video Link"
+                                        name="video" value="{{ old('video') }}">
+                                    <x-backend.error name="video" />
 
                                 </div>
 

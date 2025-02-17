@@ -11,4 +11,9 @@ class Partners extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function partnerMultiImages()
+    {
+        return $this->hasMany(PartnerMultiImages::class, 'partner_id');
+    }
+
 }

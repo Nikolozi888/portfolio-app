@@ -3,11 +3,12 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <ul class="about__icons__wrap">
-                    @foreach (explode(',', $partner->images) as $image)
+                    @foreach ($partner->partnerMultiImages as $image)
                         <li class="now-in-view">
-                            <img class="light" src="{{ asset($image) }}" alt="">
+                            <img class="light" src="{{ asset($image->image) }}" alt="">
                         </li>
                     @endforeach
+
                 </ul>
             </div>
             <div class="col-lg-6">

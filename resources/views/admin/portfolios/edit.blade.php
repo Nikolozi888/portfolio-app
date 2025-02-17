@@ -11,7 +11,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.portfolios.index') }}">Portfolios</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.portfolios.index') }}">Portfolios</a>
+                                </li>
                                 <li class="breadcrumb-item active">Edit Portfolio</li>
                             </ol>
                         </div>
@@ -39,25 +40,27 @@
                                     <label for="validationCustom01" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="validationCustom01" placeholder="title"
                                         name="title" value="{{ $portfolio->title }}" required>
-                                        <x-backend.error name="title" />
+                                    <x-backend.error name="title" />
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="validationCustom01" class="form-label">Category</label>
-                                    <input type="text" class="form-control" id="validationCustom01"
-                                        placeholder="category" name="category" value="{{ $portfolio->category }}" required>
-                                        <x-backend.error name="category" />
-                                    </div>
+                                    <input type="text" class="form-control" id="validationCustom01" placeholder="category"
+                                        name="category" value="{{ $portfolio->category }}" required>
+                                    <x-backend.error name="category" />
+                                </div>
                                 <div class="mb-3">
                                     <h4 class="card-title">Image</h4>
-                                    <input type="file" class="form-control" value="{{ $portfolio->image }}"
-                                        id="customFile" name="image">
-                                        <x-backend.error name="image" />
+                                    <input type="file" class="form-control" value="{{ $portfolio->image }}" id="customFile"
+                                        name="image" onchange="previewImage();">
+                                    <x-backend.error name="image" />
+                                    <div id="imagePreviewContainer" style="margin-top: 10px; margin-bottom: 20px;"></div>
                                     <img width="200px" src="{{ asset($portfolio->image) }}" alt="Blog Image">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Description</label>
-                                    <textarea id="elm2" name="description" placeholder="Description">{!! $portfolio->description !!}</textarea>
+                                    <textarea id="elm2" name="description"
+                                        placeholder="Description">{!! $portfolio->description !!}</textarea>
                                     <x-backend.error name="description" />
                                 </div>
 

@@ -67,8 +67,8 @@
                         <h4 class="widget-title">Categories</h4>
                         <ul class="sidebar__cat">
                             @foreach ($categories as $category)
-                                <li class="sidebar__cat__item"><a
-                                        href="{{ route('categories.index', $category->slug) }}">{{ $category->name }}</a>
+                                <li class="sidebar__cat__item">
+                                    <a href="{{ route('categories.index', $category->slug) }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
                         </ul>

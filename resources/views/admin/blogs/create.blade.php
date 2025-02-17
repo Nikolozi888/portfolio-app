@@ -54,10 +54,10 @@
 
                                 <div class="mb-3">
                                     <h4 class="card-title">Image</h4>
-                                    <input type="file" class="form-control" id="customFile" name="image">
+                                    <input type="file" class="form-control" id="customFile" name="image"
+                                        onchange="previewImage();">
                                     <x-backend.error name="image" />
-                                    <img id="imagePreview" src="#" alt="Uploaded Image"
-                                        style="display: none; max-width: 200px; margin-top: 10px;">
+                                    <div id="imagePreviewContainer" style="margin-top: 10px;"></div>
                                 </div>
                                 <div class="mb-3">
                                     <h4 class="card-title">Category</h4>
@@ -83,7 +83,8 @@
 
                                 <div class="mb-3">
                                     <label for="description">Description</label>
-                                    <textarea id="elm2" name="description" placeholder="Description">{{ old('description') }}</textarea>
+                                    <textarea id="elm2" name="description"
+                                        placeholder="Description">{{ old('description') }}</textarea>
                                     <x-backend.error name="description" />
                                 </div>
 

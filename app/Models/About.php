@@ -10,4 +10,9 @@ class About extends Model
 
     use HasFactory;
     protected $guarded = [];
+
+    public function aboutMultiImages()
+    {
+        return $this->hasMany(AboutMultiImages::class, 'about_id');
+    }
 }

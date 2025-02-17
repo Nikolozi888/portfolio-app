@@ -3,9 +3,9 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <ul class="about__icons__wrap">
-                    @foreach (explode(',', $about->images) as $image)
+                    @foreach ($about->aboutMultiImages as $image)
                         <li class="now-in-view">
-                            <img class="light" src="{{ asset($image) }}" alt="">
+                            <img class="light" src="{{ asset($image->image) }}" alt="">
                         </li>
                     @endforeach
                 </ul>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <p class="desc">{{ $about->excerpt }}</p>
-                    <a href="{{ route('about') }}" class="btn">More About Me</a>
+                    <a href="{{ route('download.resume') }}" class="btn">Download My Resume</a>
                 </div>
             </div>
         </div>

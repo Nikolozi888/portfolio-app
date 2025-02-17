@@ -52,7 +52,7 @@
                                     <input type="file" class="form-control" id="customFile" name="images[]" multiple>
                                     <x-backend.error name="images" />
                                     @foreach (explode(',', $partner->images) as $image)
-                                        <div id="imagePreviewContainer" style="margin-top: 10px;">
+                                        <div id="imagePreviewContainer" style="margin-top: 10px; display: inline-block;">
                                             <img src="{{ asset($image) }}" alt="Uploaded Image"
                                                 style="max-width: 100px; max-height: 100px; margin-right: 10px;">
                                         </div>

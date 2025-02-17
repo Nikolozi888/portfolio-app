@@ -19,7 +19,7 @@ class InformationFactory extends Factory
         return [
             'title' => 'I will give you Best Product in the shortest time',
             'excerpt' => "I'm a Rasalina-based product design & visual designer focused on crafting clean & user-friendly experiences",
-            'video' => '',
+            'video' => 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
             'image' => 'Frontend/assets/img/banner/banner_img.png'
         ];
     }

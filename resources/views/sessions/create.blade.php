@@ -45,12 +45,18 @@
                                     <div class="col-12">
                                         <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
                                     </div>
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
                                         <input class="form-control" type="password" name="password"  placeholder="Password">
                                     </div>
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
 

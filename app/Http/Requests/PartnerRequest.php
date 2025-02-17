@@ -24,7 +24,6 @@ class PartnerRequest extends FormRequest
         $rules = [
             'name' => 'required',
             'excerpt' => 'required|max:500',
-            'images' => 'nullable',
         ];
 
         return $rules;

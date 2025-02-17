@@ -45,15 +45,6 @@
                                         name="excerpt" value="{{ old('excerpt') }}">
                                     <x-backend.error name="excerpt" />
                                 </div>
-                                <div class="mb-3">
-                                    <h4 class="card-title">Images</h4>
-
-                                    <input type="file" class="form-control" id="customFile" name="images[]" multiple>
-                                    <x-backend.error name="images" />
-                                    <div id="imagePreviewContainer" style="margin-top: 10px;"></div>
-
-
-                                </div>
                                 <label for="experience">Experience</label>
                                 <textarea id="elm1" name="experience"
                                     placeholder="Experience">{{ old('experience') }}</textarea>

@@ -5,7 +5,7 @@
                     src="{{ asset($blog->image) }}"
                     alt=""></a>
             <div class="blog__post__tags">
-                <a href="">{{ $blog->tag->name }}</a>
+                <a href="{{ route('tags.index', $blog->tag->slug) }}">{{ $blog->tag->name }}</a>
             </div>
         </div>
         <div class="blog__post__content">

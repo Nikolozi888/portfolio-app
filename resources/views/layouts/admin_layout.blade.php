@@ -153,6 +153,69 @@
             });
         });
     </script>
+    <script>
+        function previewImage() {
+            const fileInput = document.getElementById('customFile');
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const file = fileInput.files[0];
+
+            if (file) {
+                previewContainer.innerHTML = '';
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    // Create the wrapper to position the delete button on the image
+                    const wrapper = document.createElement('div');
+                    wrapper.style.position = 'relative';
+                    wrapper.style.display = 'inline-block';
+
+                    // Create the image element.
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.style.display = 'block';
+                    img.style.width = '100%';
+                    img.style.borderRadius = '8px';
+
+                    // Create the delete button ('×') and style it.
+                    const deleteButton = document.createElement('div');
+                    deleteButton.innerHTML = '&times;'; // HTML entity for ×
+                    deleteButton.style.position = 'absolute';
+                    deleteButton.style.top = '5px';
+                    deleteButton.style.right = '5px';
+                    deleteButton.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+                    deleteButton.style.color = 'white';
+                    deleteButton.style.borderRadius = '50%';
+                    deleteButton.style.width = '20px';
+                    deleteButton.style.height = '20px';
+                    deleteButton.style.display = 'flex';
+                    deleteButton.style.alignItems = 'center';
+                    deleteButton.style.justifyContent = 'center';
+                    deleteButton.style.cursor = 'pointer';
+                    deleteButton.style.fontSize = '14px';
+                    deleteButton.style.lineHeight = '20px';
+
+                    // When the delete button is clicked:
+                    deleteButton.onclick = function () {
+                        // Clear the file input and preview container
+                        fileInput.value = '';
+                        previewContainer.innerHTML = '';
+                    };
+
+                    // Append image and delete button to the wrapper
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(deleteButton);
+
+                    // Append the wrapper to the preview container
+                    previewContainer.appendChild(wrapper);
+                };
+
+                // Read the file as a Data URL.
+                reader.readAsDataURL(file);
+            }
+        }
+
+    </script>
+
     @stack('scripts')
 </body>
 
