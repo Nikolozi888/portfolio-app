@@ -27,8 +27,6 @@ class PartnerMultiImagesController extends Controller
     {
         $attributes = $request->validated();
 
-        $partner = Partners::find($request->partner_id);
-
         if ($request->hasFile('images')) {
             $current_timestamp = Carbon::now()->timestamp;
 
@@ -37,7 +35,6 @@ class PartnerMultiImagesController extends Controller
                 $path = $file->storeAs('images', $file_name, 'public');
 
                 PartnerMultiImages::create([
-                    'partner_id' => $partner->id,
                     'image' => 'storage/' . $path,
                 ]);
             }

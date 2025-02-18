@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <ul class="about__icons__wrap">
-                    @foreach ($about->aboutMultiImages as $image)
+                    @foreach (App\Models\AboutMultiImages::all() as $image)
                         <li class="now-in-view">
                             <img class="light" src="{{ asset($image->image) }}" alt="">
                         </li>

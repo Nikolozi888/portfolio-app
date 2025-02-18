@@ -24,7 +24,6 @@ class AboutMultiImagesRequest extends FormRequest
         $rules = [
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'about_id' => 'required|exists:abouts,id',
         ];
 
         if (request()->isMethod('PUT') || request()->isMethod('PATCH')) {

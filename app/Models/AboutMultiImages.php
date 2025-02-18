@@ -11,8 +11,4 @@ class AboutMultiImages extends Model
 
     protected $guarded = [];
 
-    public function about()
-    {
-        return $this->belongsTo(About::class, 'about_id');
-    }
 }

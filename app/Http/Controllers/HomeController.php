@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $userInfo = Information::first();
         $about = About::first();
-        $services = Service::all();
+        $services = Service::latest()->take(5)->get();
         $portfolios = Portfolio::all();
         $partners = Partners::all();
         $feedbacks = Feedback::all();

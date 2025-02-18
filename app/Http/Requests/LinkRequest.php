@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PartnerMultiImagesRequest extends FormRequest
+class LinkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,16 +21,9 @@ class PartnerMultiImagesRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        return [
+            'icon' => 'nullable|max:1024',
+            'link' => 'required|url'
         ];
-
-        if (request()->isMethod('PUT') || request()->isMethod('PATCH')) {
-            $rules['image'] = 'required';
-        }
-
-        return $rules;
     }
-
 }

@@ -11,10 +11,4 @@ class PartnerMultiImages extends Model
 
     protected $guarded = [];
 
-    public function partner()
-    {
-        return $this->belongsTo(Partners::class, 'partner_id');
-    }
-
-
 }

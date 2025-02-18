@@ -37,15 +37,21 @@
             </div>
             <div class="col-xl-3 col-lg-4 col-sm-6">
                 @if ($socialInfo)
-                <div class="footer__widget">
-                    <div class="fw-title">
-                        <h5 class="sub-title">{{ $socialInfo->name }}</h5>
-                        <h4 class="title">{{ $socialInfo->title }}</h4>
+                    <div class="footer__widget">
+                        <div class="fw-title">
+                            <h5 class="sub-title">{{ $socialInfo->name }}</h5>
+                            <h4 class="title">{{ $socialInfo->title }}</h4>
+                        </div>
+                        <div class="footer__widget__social">
+                            <p>{{ $socialInfo->description }}</p>
+                            <ul class="footer__social__list">
+                                @foreach (App\Models\Link::all() as $link)
+                                    <li><a href="{{ $link->link }}"><img style="width: 30px;" src="{{ asset($link->icon) }}"
+                                                alt="Icon"></a></li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
-                    <div class="footer__widget__social">
-                        <p>{{ $socialInfo->description }}</p>
-                    </div>
-                </div>
                 @endif
             </div>
         </div>

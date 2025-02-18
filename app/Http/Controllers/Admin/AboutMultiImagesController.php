@@ -27,8 +27,6 @@ class AboutMultiImagesController extends Controller
     {
         $attributes = $request->validated();
 
-        $about = About::find($request->about_id);
-
         if ($request->hasFile('images')) {
             $current_timestamp = Carbon::now()->timestamp;
 
@@ -37,7 +35,6 @@ class AboutMultiImagesController extends Controller
                 $path = $file->storeAs('images', $file_name, 'public');
 
                 AboutMultiImages::create([
-                    'about_id' => $about->id,
                     'image' => 'storage/' . $path,
                 ]);
             }

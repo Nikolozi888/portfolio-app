@@ -22,6 +22,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\ContactInfoController;
+use App\Http\Controllers\Admin\LinkController;
 use App\Http\Controllers\Admin\MessageInfoController;
 use App\Http\Controllers\Admin\SocialInfoController;
 use App\Http\Controllers\HomeController;
@@ -66,6 +67,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
 
+        Route::resource('/links', LinkController::class)->names('links')->except('show');
         Route::resource('/messageInfo', MessageInfoController::class)->names('messageInfo')->except('show');
         Route::resource('/socialInfo', SocialInfoController::class)->names('socialInfo')->except('show');
         Route::resource('/contactInfo', ContactInfoController::class)->names('contactInfo')->except('show');

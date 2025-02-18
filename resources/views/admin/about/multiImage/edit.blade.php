@@ -44,19 +44,6 @@
                                         style="margin-right: 10px;">
                                 </div>
 
-                                <div class="mb-3">
-                                    <h4 class="card-title">About</h4>
-                                    <select name="about_id" class="form-select" required>
-                                        <option selected disabled>Choose a About</option>
-                                        @foreach (App\Models\About::all() as $about)
-                                            <option value="{{ $about->id }}" {{ $about->id == $multiImage->about_id ? 'selected' : '' }}>
-                                                {{ $about->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <x-backend.error name="about_id" />
-                                </div>
-
                                 <button class="btn btn-primary" type="submit">Update</button>
                             </form>
 

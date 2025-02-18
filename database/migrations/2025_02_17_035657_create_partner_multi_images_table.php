@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('partner_multi_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('partner_id')->constrained()->onDelete('cascade');
             $table->string('image');
             $table->timestamps();
         });

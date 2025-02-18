@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PortfolioSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(TagSeeder::class);
+        $this->call(LinkSeeder::class);
         $this->call(MultiImagesSeeder::class);
         $this->call(AddressInfoSeeder::class);
         $this->call(ContactInfoSeeder::class);

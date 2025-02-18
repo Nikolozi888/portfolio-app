@@ -18,7 +18,6 @@ class PartnerMultiImagesFactory extends Factory
     {
         return [
             'image' => 'Frontend/assets/img/icons/illustrator_light.png',
-            'partner_id' => 1,
         ];
     }
 }

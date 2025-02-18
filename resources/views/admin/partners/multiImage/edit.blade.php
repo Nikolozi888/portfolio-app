@@ -44,19 +44,6 @@
                                         style="margin-right: 10px;">
                                 </div>
 
-                                <div class="mb-3">
-                                    <h4 class="card-title">Partner</h4>
-                                    <select name="partner_id" class="form-select" required>
-                                        <option selected disabled>Choose a Partner</option>
-                                        @foreach (App\Models\Partners::all() as $partner)
-                                            <option value="{{ $partner->id }}" {{ $partner->id == $multiImage->partner_id ? 'selected' : '' }}>
-                                                {{ $partner->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <x-backend.error name="partner_id" />
-                                </div>
-
                                 <button class="btn btn-primary" type="submit">Update</button>
                             </form>
 
