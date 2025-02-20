@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InformationRequest;
 use App\Models\Information;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 
 class InformationController extends Controller
 {
+
+    protected $imageUpload;
+
+    public function __construct(ImageService $imageUpload)
+    {
+        $this->imageUpload = $imageUpload;
+    }
+
+
     public function index()
     {
         $information = Information::first();
@@ -25,10 +35,10 @@ class InformationController extends Controller
     {
         $attributes = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
-            $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = 'storage/' . $imagePath;
+        $imagePath = $this->imageUpload->upload($request);
+
+        if ($imagePath) {
+            $attributes['image'] = $imagePath;
         }
 
         Information::create($attributes);
@@ -37,6 +47,7 @@ class InformationController extends Controller
 
         return redirect()->route('admin.informations.index')->with($message);
     }
+
 
     public function edit(Information $information)
     {

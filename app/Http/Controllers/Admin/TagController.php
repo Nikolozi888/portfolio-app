@@ -9,17 +9,20 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $tags = Tag::all();
 
         return view('admin.tags.index', compact('tags'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('admin.tags.create');
     }
 
-    public function store(TagRequest $tagRequest) {
+    public function store(TagRequest $tagRequest)
+    {
         $attributes = $tagRequest->validated();
 
         Tag::create($attributes);
@@ -28,11 +31,13 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index')->with($message);
     }
 
-    public function edit(Tag $tag) {
+    public function edit(Tag $tag)
+    {
         return view('admin.tags.edit', compact('tag'));
     }
 
-    public function update(TagRequest $tagRequest, Tag $tag) {
+    public function update(TagRequest $tagRequest, Tag $tag)
+    {
         $attributes = $tagRequest->validated();
 
         $tag->update($attributes);
@@ -41,7 +46,8 @@ class TagController extends Controller
         return redirect()->route('admin.tags.index')->with($message);
     }
 
-    public function destroy(Tag $tag) {
+    public function destroy(Tag $tag)
+    {
         $tag->delete();
 
         $message = array('message' => 'Tag Deleted SuccessFully', 'type' => 'success');
