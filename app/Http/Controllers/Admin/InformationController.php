@@ -56,23 +56,20 @@ class InformationController extends Controller
 
     public function update(InformationRequest $request, Information $information)
     {
-
         $attributes = $request->validated();
 
         if ($request->hasFile('image')) {
-            $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
-            $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = 'storage/' . $imagePath;
+            $attributes['image'] = $this->imageUpload->upload($request);
         } else {
             $attributes['image'] = $information->image;
         }
 
-        $message = array('message' => 'Information Updated SuccessFully', 'type' => 'success');
         $information->update($attributes);
 
-        return redirect()->route('admin.informations.index')->with($message);
-
+        return redirect()->route('admin.informations.index')
+            ->with(['message' => 'Information Updated Successfully', 'type' => 'success']);
     }
+
 
 
     public function destroy(Information $information)
