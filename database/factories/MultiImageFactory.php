@@ -17,15 +17,7 @@ class MultiImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'images' => implode(',', [
-                'Frontend/assets/img/images/testi_img01.png',
-                'Frontend/assets/img/images/testi_img02.png',
-                'Frontend/assets/img/images/testi_img03.png',
-                'Frontend/assets/img/images/testi_img04.png',
-                'Frontend/assets/img/images/testi_img05.png',
-                'Frontend/assets/img/images/testi_img06.png',
-                'Frontend/assets/img/images/testi_img07.png',
-            ]),
+            'image' => 'Frontend/assets/img/icons/illustrator_light.png',
         ];
     }
 }

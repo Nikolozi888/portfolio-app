@@ -38,7 +38,6 @@
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
                                                 <th>Image</th>
-                                                <th>About</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -49,9 +48,6 @@
                                                         <td data-field="id">{{ $image->id }}</td>
                                                         <td data-field="images">
                                                             <img src="{{ asset($image->image) }}" alt="Image" width="100">
-                                                        </td>
-                                                        <td data-field="partner">
-                                                            {{ Str::limit($image->about->title, 30) }}
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('admin.about.multiImage.edit', $image->id) }}"

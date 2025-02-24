@@ -11,7 +11,7 @@ class MultiImageController extends Controller
 
     public function index()
     {
-        $multiImages = MultiImage::first();
+        $multiImages = MultiImage::all();
 
         return view('admin.feedbacks.multiImage.index', compact('multiImages'));
     }
@@ -24,60 +24,55 @@ class MultiImageController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'images' => 'nullable'
+            'images' => 'required'
         ]);
 
         $current_timestamp = Carbon::now()->timestamp;
 
-        $gallery_images = [];
         if ($request->hasFile('images')) {
+            $current_timestamp = Carbon::now()->timestamp;
+
             foreach ($request->file('images') as $index => $file) {
                 $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
                 $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
+
+                MultiImage::create([
+                    'image' => 'storage/' . $path,
+                ]);
             }
         }
-
-        $attributes['images'] = implode(',', $gallery_images);
-
-        MultiImage::create($attributes);
 
         $message = array('message' => 'MultiImage Created SuccessFully', 'type' => 'success');
         return redirect()->route('admin.feedbacks.multiImage.index')->with($message);
     }
 
-    public function edit($id) {
-        $multiImages = MultiImage::find($id);
-        return view('admin.feedbacks.multiImage.edit', compact('multiImages'));
+    public function edit($id)
+    {
+        $multiImage = MultiImage::find($id);
+        return view('admin.feedbacks.multiImage.edit', compact('multiImage'));
     }
 
     public function update(Request $request, $id)
     {
-
-        $multiImage = MultiImage::find($id);
-
-        $attributes = $request->all();
+        $attributes = $request->validate([
+            'image' => 'required',
+        ]);
 
         $current_timestamp = Carbon::now()->timestamp;
 
-        $gallery_images = [];
+        $image = MultiImage::find($id);
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-                $gallery_images[] = 'storage/' . $path;
-            }
-        }
-
-        if (!empty($gallery_images)) {
-            $attributes['images'] = implode(',', $gallery_images);
+        if ($request->hasFile('image')) {
+            $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
+            $imagePath = $request->file('image')->storeAs('images', $uniqueName, 'public');
+            $attributes['image'] = 'storage/' . $imagePath;
         } else {
-            $attributes['images'] = $multiImage->images;
+            $attributes['image'] = $image->image;
         }
-        $multiImage->update($attributes);
 
-        $message = array('message' => 'Images Updated SuccessFully', 'type' => 'success');
+        $image->update($attributes);
+
+        $message = array('message' => 'Image Updated SuccessFully', 'type' => 'success');
         return redirect()->route('admin.feedbacks.multiImage.index')->with($message);
     }
 

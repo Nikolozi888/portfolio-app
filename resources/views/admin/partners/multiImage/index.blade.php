@@ -38,7 +38,6 @@
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
                                                 <th>Image</th>
-                                                <th>Partner</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
@@ -50,17 +49,13 @@
                                                         <td data-field="images">
                                                             <img src="{{ asset($image->image) }}" alt="Image" width="100">
                                                         </td>
-                                                        <td data-field="partner">
-                                                            {{ Str::limit($image->partner->name, 30) }}
-                                                        </td>
                                                         <td>
                                                             <a href="{{ route('admin.partners.multiImage.edit', $image->id) }}"
                                                                 class="btn btn-outline-secondary btn-lg edit" title="Edit">
                                                                 <i class="fas fa-pencil-alt"></i>
                                                             </a>
-                                                        
-                                                            <form
-                                                                action="{{ route('admin.partners.multiImage.destroy', $image->id) }}"
+
+                                                            <form action="{{ route('admin.partners.multiImage.destroy', $image->id) }}"
                                                                 method="POST" class="d-inline delete-form">
                                                                 @csrf
                                                                 @method('DELETE')

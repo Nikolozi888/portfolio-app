@@ -2,17 +2,12 @@
     <div class="container">
         <div class="row align-items-center justify-content-between">
             <div class="col-lg-6 order-0 order-lg-2">
-                <ul class="testimonial__avatar__img">
-                    @php
-                        $multiImage = App\Models\MultiImage::first();
-                    @endphp
-                    @if ($multiImage)
-                        @foreach (explode(',', $multiImage->images) as $image)
-                            <li><img src="{{ asset($image) }}" alt=""></li>
-                        @endforeach
-                    @else
-                        <p>No images found.</p>
-                    @endif
+                <ul class="about__icons__wrap">
+                    @foreach (App\Models\MultiImage::all() as $image)
+                        <li class="now-in-view">
+                            <img class="light" src="{{ asset($image->image) }}" alt="">
+                        </li>
+                    @endforeach
                 </ul>
 
             </div>

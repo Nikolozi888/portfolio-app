@@ -26,22 +26,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @if ($multiImages)
+                            @if ($multiImages->count() > 0)
 
 
                                 <h4 class="card-title">MultiImage</h4>
-                                <form action="{{ route('admin.feedbacks.multiImage.destroy', $multiImages->id) }}" method="POST"
-                                    class="d-inline delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-secondary btn-lg delete" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                                <a href="{{ route('admin.feedbacks.multiImage.edit', $multiImages->id) }}"
-                                    class="btn btn-outline-secondary btn-lg edit" title="Edit">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </a>
 
                                 <div class="table-responsive">
 
@@ -50,16 +38,34 @@
                                             <tr style="cursor: pointer;">
                                                 <th>ID</th>
                                                 <th>Image</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (explode(',', $multiImages) as $i => $image)
+                                            @foreach ($multiImages as $image)
                                                 @if (!empty($image))
                                                     <tr data-id="1" style="cursor: pointer;">
-                                                        <td data-field="id">{{ $i + 1 }}</td>
+                                                        <td data-field="id">{{ $image->id }}</td>
                                                         <td data-field="images">
-                                                            <img src="{{ asset($image) }}" alt="Image" width="100">
+                                                            <img src="{{ asset($image->image) }}" alt="Image" width="100">
                                                         </td>
+                                                        <td>
+                                                            <a href="{{ route('admin.feedbacks.multiImage.edit', $image->id) }}"
+                                                                class="btn btn-outline-secondary btn-lg edit" title="Edit">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </a>
+
+                                                            <form action="{{ route('admin.feedbacks.multiImage.destroy', $image->id) }}"
+                                                                method="POST" class="d-inline delete-form">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-outline-secondary btn-lg delete"
+                                                                    title="Delete">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+
                                                     </tr>
                                                 @endif
                                             @endforeach

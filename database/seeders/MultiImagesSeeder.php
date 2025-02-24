@@ -13,6 +13,6 @@ class MultiImagesSeeder extends Seeder
      */
     public function run(): void
     {
-        MultiImage::factory(1)->create();
+        MultiImage::factory(7)->create();
     }
 }
