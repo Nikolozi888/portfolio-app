@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\Repositories\AboutRepositoryInterface;
+use App\DTOs\AboutDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AboutRequest;
 use App\Models\About;
@@ -30,10 +31,9 @@ class AboutController extends Controller
 
     public function store(AboutRequest $request)
     {
-        $attributes = $request->validated();
-
+        $AboutDTO = AboutDTO::fromRequest($request);
        
-        $this->aboutRepository->createAbout($attributes);
+        $this->aboutRepository->createAbout($AboutDTO->toArray());
 
         $message = array('message' => 'About Information Created Successfully', 'type' => 'success');
 
@@ -49,9 +49,9 @@ class AboutController extends Controller
     {
         $about = $this->aboutRepository->findAbout($id);
 
-        $attributes = $request->validated();
+        $AboutDTO = AboutDTO::fromRequest($request);
 
-        $this->aboutRepository->updateAbout($about, $attributes);
+        $this->aboutRepository->updateAbout($about, $AboutDTO->toArray());
 
         $message = array('message' => 'About Information Updated Successfully', 'type' => 'success');
         return redirect()->route('admin.about.index')->with($message);

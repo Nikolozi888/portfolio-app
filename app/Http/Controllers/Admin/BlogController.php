@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contracts\Repositories\BlogRepositoryInterface;
+use App\DTOs\BlogDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
@@ -26,15 +27,20 @@ class BlogController extends Controller
     }
 
     public function store(BlogRequest $blogRequest) {
-        $attributes = $blogRequest->validated();
+
+        $data = $blogRequest->validated();
 
         if ($blogRequest->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $blogRequest->file('image')->getClientOriginalName();
             $imagePath = $blogRequest->file('image')->storeAs('images', $uniqueName, 'public');
-            $attributes['image'] = $imagePath;
+            $data['image'] = $imagePath;
+        } else {
+            $data['image'] = null;
         }
 
-        $this->blogRepository->createBlog($attributes);
+        $blogDTO = BlogDTO::fromArray($data);
+
+        $this->blogRepository->createBlog($blogDTO->toArray());
 
         $message = array('message' => 'Blog Created SuccessFully', 'type' => 'success');
         return redirect()->route('admin.blogs.index')->with($message);
@@ -45,6 +51,7 @@ class BlogController extends Controller
     }
 
     public function update(BlogRequest $blogRequest, Blog $blog) {
+
         $attributes = $blogRequest->validated();
 
         if ($blogRequest->hasFile('image')) {
@@ -55,7 +62,9 @@ class BlogController extends Controller
             $attributes['image'] = $blog->image;
         }
 
-        $this->blogRepository->updateBlog($blog, $attributes);
+        $blogDTO = BlogDTO::fromArray($attributes);
+
+        $this->blogRepository->updateBlog($blog, $blogDTO->toArray());
 
         $message = array('message' => 'Blog Updated SuccessFully', 'type' => 'success');
         return redirect()->route('admin.blogs.index')->with($message);
