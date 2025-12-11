@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\LogoutUser;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionsController extends Controller
 {
+    public function __construct(
+        public LogoutUser $logoutUser,
+    )
+    {}
     public function create()
     {
         return view('sessions.create');
@@ -30,9 +35,7 @@ class SessionsController extends Controller
 
     public function destroy(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $this->logoutUser->handle($request);
 
         return redirect()->route('home');
     }
