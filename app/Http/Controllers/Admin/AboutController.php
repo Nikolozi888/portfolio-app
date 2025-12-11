@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\AboutRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AboutRequest;
 use App\Models\About;
@@ -10,9 +11,14 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
+    public function __construct(
+        public AboutRepositoryInterface $aboutRepository,
+    )
+    {}
+
     public function index()
     {
-        $about = About::first();
+        $about = $this->aboutRepository->getAbout();
 
         return view('admin.about.index', compact('about'));
     }
@@ -27,7 +33,7 @@ class AboutController extends Controller
         $attributes = $request->validated();
 
        
-        About::create($attributes);
+        $this->aboutRepository->createAbout($attributes);
 
         $message = array('message' => 'About Information Created Successfully', 'type' => 'success');
 
@@ -41,11 +47,11 @@ class AboutController extends Controller
 
     public function update(AboutRequest $request, $id)
     {
-        $about = About::findOrFail($id);
+        $about = $this->aboutRepository->findAbout($id);
 
         $attributes = $request->validated();
 
-        $about->update($attributes);
+        $this->aboutRepository->updateAbout($about, $attributes);
 
         $message = array('message' => 'About Information Updated Successfully', 'type' => 'success');
         return redirect()->route('admin.about.index')->with($message);
@@ -55,7 +61,7 @@ class AboutController extends Controller
 
     public function destroy(About $about)
     {
-        $about->delete();
+        $this->aboutRepository->deleteAbout($about);
 
         $message = array('message' => 'About Information Deleted SuccessFully', 'type' => 'success');
         return redirect()->route('admin.about.index')->with($message);
