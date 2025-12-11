@@ -21,9 +21,9 @@ class BlogController extends Controller
 
         $blogs = $this->blogRepository->getPaginatedBlogs($request, $search);
         $categories = Category::all();
-        $tag = Tag::all();
+        $tags = Tag::all();
 
-        return view('user.blog.index', compact('blogs', 'categories', 'tag', 'search'));
+        return view('user.blog.index', compact('blogs', 'categories', 'tags', 'search'));
     }
 
 
