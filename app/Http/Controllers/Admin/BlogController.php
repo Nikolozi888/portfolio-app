@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\BlogRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
@@ -9,8 +10,13 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    public function __construct(
+        public BlogRepositoryInterface $blogRepository,
+    )
+    {}
+
     public function index() {
-        $blogs = Blog::all();
+        $blogs = $this->blogRepository->getAllBlog();
 
         return view('admin.blogs.index', compact('blogs'));
     }
@@ -28,7 +34,7 @@ class BlogController extends Controller
             $attributes['image'] = $imagePath;
         }
 
-        Blog::create($attributes);
+        $this->blogRepository->createBlog($attributes);
 
         $message = array('message' => 'Blog Created SuccessFully', 'type' => 'success');
         return redirect()->route('admin.blogs.index')->with($message);
@@ -49,14 +55,15 @@ class BlogController extends Controller
             $attributes['image'] = $blog->image;
         }
 
-        $blog->update($attributes);
+        $this->blogRepository->updateBlog($blog, $attributes);
 
         $message = array('message' => 'Blog Updated SuccessFully', 'type' => 'success');
         return redirect()->route('admin.blogs.index')->with($message);
     }
 
     public function destroy(Blog $blog) {
-        $blog->delete();
+
+        $this->blogRepository->deleteBlog($blog);
 
         $message = array('message' => 'Blog Deleted SuccessFully', 'type' => 'success');
         return redirect()->route('admin.blogs.index')->with($message);

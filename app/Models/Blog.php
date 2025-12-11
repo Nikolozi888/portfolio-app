@@ -20,6 +20,16 @@ class Blog extends Model
             ->saveSlugsTo('slug');
     }
 
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        return $query;
+    }
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);
