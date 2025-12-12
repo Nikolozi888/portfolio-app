@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\GetMultiImagePath;
 use App\Models\PartnerMultiImages;
 use App\Models\Partners;
 use Carbon\Carbon;
@@ -23,7 +24,7 @@ class PartnerMultiImagesController extends Controller
         return view('admin.partners.multiImage.create');
     }
 
-    public function store(PartnerMultiImagesRequest $request)
+    public function store(PartnerMultiImagesRequest $request, GetMultiImagePath $getMultiImagePath)
     {
         $attributes = $request->validated();
 
@@ -31,9 +32,7 @@ class PartnerMultiImagesController extends Controller
             $current_timestamp = Carbon::now()->timestamp;
 
             foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-
+                $path = $getMultiImagePath->handle($current_timestamp, $index, $file);
                 PartnerMultiImages::create([
                     'image' => 'storage/' . $path,
                 ]);

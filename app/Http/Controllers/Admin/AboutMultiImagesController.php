@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\GetMultiImagePath;
 use App\Contracts\Repositories\AboutMultiImagesRepositoryInterface;
 use App\Models\About;
 use App\Models\AboutMultiImages;
@@ -28,7 +29,7 @@ class AboutMultiImagesController extends Controller
         return view('admin.about.multiImage.create');
     }
 
-    public function store(AboutMultiImagesRequest $request)
+    public function store(AboutMultiImagesRequest $request, GetMultiImagePath $getMultiImagePath)
     {
         $attributes = $request->validated();
 
@@ -36,9 +37,7 @@ class AboutMultiImagesController extends Controller
             $current_timestamp = Carbon::now()->timestamp;
 
             foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
-
+                $path = $getMultiImagePath->handle($current_timestamp, $index, $file);
                 $this->aboutMultiImagesRepository->createImage($path);
             }
         }
