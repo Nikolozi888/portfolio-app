@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\AboutMultiImagesRepositoryInterface;
 use App\Models\About;
 use App\Models\AboutMultiImages;
 use Carbon\Carbon;
@@ -11,9 +12,13 @@ use App\Http\Requests\AboutMultiImagesRequest;
 
 class AboutMultiImagesController extends Controller
 {
+    public function __construct(
+        public AboutMultiImagesRepositoryInterface $aboutMultiImagesRepository,
+    )
+    {}
     public function index()
     {
-        $multiImages = AboutMultiImages::all();
+        $multiImages = $this->aboutMultiImagesRepository->getAllImages();
 
         return view('admin.about.multiImage.index', compact('multiImages'));
     }
@@ -34,9 +39,7 @@ class AboutMultiImagesController extends Controller
                 $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
                 $path = $file->storeAs('images', $file_name, 'public');
 
-                AboutMultiImages::create([
-                    'image' => 'storage/' . $path,
-                ]);
+                $this->aboutMultiImagesRepository->createImage($path);
             }
         }
 
@@ -48,7 +51,7 @@ class AboutMultiImagesController extends Controller
 
     public function edit($id)
     {
-        $multiImage = AboutMultiImages::find($id);
+        $multiImage = $this->aboutMultiImagesRepository->findImage($id);
         return view('admin.about.multiImage.edit', compact('multiImage'));
     }
 
@@ -56,7 +59,7 @@ class AboutMultiImagesController extends Controller
     {
         $attributes = $request->validated();
 
-        $image = AboutMultiImages::find($id);
+        $image = $this->aboutMultiImagesRepository->findImage($id);
 
         if ($request->hasFile('image')) {
             $uniqueName = uniqid() . '-' . $request->file('image')->getClientOriginalName();
@@ -66,7 +69,7 @@ class AboutMultiImagesController extends Controller
             $attributes['image'] = $image->image;
         }
 
-        $image->update($attributes);
+        $this->aboutMultiImagesRepository->updateImage($image, $attributes);
 
         $message = array('message' => 'MultiImage Updated Successfully', 'type' => 'success');
         return redirect()->route('admin.about.multiImage.index')->with($message);
@@ -75,7 +78,9 @@ class AboutMultiImagesController extends Controller
 
     public function destroy($id)
     {
-        AboutMultiImages::find($id)->delete();
+        $image = $this->aboutMultiImagesRepository->findImage($id);
+
+        $this->aboutMultiImagesRepository->deleteImage($image);
 
         $message = array('message' => 'Images Deleted SuccessFully', 'type' => 'success');
         return redirect()->route('admin.about.multiImage.index')->with($message);
