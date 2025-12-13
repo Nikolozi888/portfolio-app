@@ -52,17 +52,15 @@ class AboutController extends Controller
 
         $this->aboutRepository->updateAbout($about, $AboutDTO->toArray());
 
-        $message = array('message' => 'About Information Updated Successfully', 'type' => 'success');
-        return redirect()->route('admin.about.index')->with($message);
+        $message = 'About Information Updated Successfully';
+        return $this->successRedirect('admin.about.index', $message);
     }
-
-
 
     public function destroy(About $about)
     {
         $this->aboutRepository->deleteAbout($about);
 
-        $message = array('message' => 'About Information Deleted SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.about.index')->with($message);
+        $message = 'About Information Deleted SuccessFully';
+        return $this->successRedirect('admin.about.index', $message);
     }
 }

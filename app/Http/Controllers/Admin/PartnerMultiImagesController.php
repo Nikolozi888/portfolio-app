@@ -39,9 +39,8 @@ class PartnerMultiImagesController extends Controller
             }
         }
 
-        $message = array('message', 'MultiImage Created Successfully', 'type' => 'success');
-
-        return redirect()->route('admin.partners.multiImage.index');
+        $message = 'MultiImage Created Successfully';
+        return $this->successRedirect('admin.partners.multiImage.index', $message);
     }
 
 
@@ -67,8 +66,9 @@ class PartnerMultiImagesController extends Controller
 
         $image->update($attributes);
 
-        $message = array('message' => 'MultiImage Updated Successfully', 'type' => 'success');
-        return redirect()->route('admin.partners.multiImage.index')->with($message);
+
+        $message = 'MultiImage Updated Successfully';
+        return $this->successRedirect('admin.partners.multiImage.index', $message);
     }
 
 
@@ -76,7 +76,7 @@ class PartnerMultiImagesController extends Controller
     {
         PartnerMultiImages::find($id)->delete();
 
-        $message = array('message' => 'Images Deleted SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.partners.multiImage.index')->with($message);
+        $message = 'MultiImage Deleted Successfully';
+        return $this->successRedirect('admin.partners.multiImage.index', $message);
     }
 }

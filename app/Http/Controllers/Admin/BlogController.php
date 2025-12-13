@@ -42,8 +42,8 @@ class BlogController extends Controller
 
         $this->blogRepository->createBlog($blogDTO->toArray());
 
-        $message = array('message' => 'Blog Created SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.blogs.index')->with($message);
+        $message = 'Blog Created SuccessFully';
+        return $this->successRedirect('admin.blogs.index', $message);
     }
 
     public function edit(Blog $blog) {
@@ -66,15 +66,15 @@ class BlogController extends Controller
 
         $this->blogRepository->updateBlog($blog, $blogDTO->toArray());
 
-        $message = array('message' => 'Blog Updated SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.blogs.index')->with($message);
+        $message = 'Blog Updated SuccessFully';
+        return $this->successRedirect('admin.blogs.index', $message);
     }
 
     public function destroy(Blog $blog) {
 
         $this->blogRepository->deleteBlog($blog);
 
-        $message = array('message' => 'Blog Deleted SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.blogs.index')->with($message);
+        $message = 'Blog Deleted SuccessFully';
+        return $this->successRedirect('admin.blogs.index', $message);
     }
 }

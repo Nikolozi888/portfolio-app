@@ -42,9 +42,8 @@ class AboutMultiImagesController extends Controller
             }
         }
 
-        $message = array('message', 'MultiImage Created Successfully', 'type' => 'success');
-
-        return redirect()->route('admin.about.multiImage.index');
+        $message = 'MultiImage Created Successfully';
+        return $this->successRedirect('admin.about.multiImage.index', $message);
     }
 
 
@@ -70,8 +69,8 @@ class AboutMultiImagesController extends Controller
 
         $this->aboutMultiImagesRepository->updateImage($image, $attributes);
 
-        $message = array('message' => 'MultiImage Updated Successfully', 'type' => 'success');
-        return redirect()->route('admin.about.multiImage.index')->with($message);
+        $message = 'MultiImage Updated Successfully';
+        return $this->successRedirect('admin.about.multiImage.index', $message);
     }
 
 
@@ -81,7 +80,7 @@ class AboutMultiImagesController extends Controller
 
         $this->aboutMultiImagesRepository->deleteImage($image);
 
-        $message = array('message' => 'Images Deleted SuccessFully', 'type' => 'success');
-        return redirect()->route('admin.about.multiImage.index')->with($message);
+        $message = 'Images Deleted SuccessFully';
+        return $this->successRedirect('admin.about.multiImage.index', $message);
     }
 }
