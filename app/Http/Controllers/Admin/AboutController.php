@@ -35,9 +35,8 @@ class AboutController extends Controller
        
         $this->aboutRepository->createAbout($AboutDTO->toArray());
 
-        $message = array('message' => 'About Information Created Successfully', 'type' => 'success');
-
-        return redirect()->route('admin.about.index')->with($message);
+        $message = 'About Information Created Successfully';
+        return $this->successRedirect('admin.about.index', $message);
     }
 
     public function edit(About $about)
