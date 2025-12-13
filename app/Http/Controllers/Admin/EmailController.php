@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ReplyEmailEvent;
 use App\Http\Controllers\Controller;
 use App\Mail\ReplyMail;
 use App\Models\Contact;
@@ -12,30 +13,22 @@ class EmailController extends Controller
 {
     public function store($id, Request $request)
     {
-        $contact = Contact::find($id);
+        $contact = Contact::findOrFail($id);
 
-        if (!$contact) {
-            return redirect()->route('admin.emails.index')->with([
-                'message' => 'Contact not found',
-                'type' => 'error'
-            ]);
-        }
-
-        $request->validate([
+        $validated = $request->validate([
             'body' => 'required|string',
         ]);
 
-        Mail::to($contact->email)->send(new ReplyMail([
-            'from' => auth()->user()->email,
-            'to' => $contact->name,
-            'body' => $request->body,
-        ]));
+        event(new ReplyEmailEvent(
+            $contact,
+            $validated['body'],
+            auth()->user()->email
+        ));
 
-        $contact->replied = 1;
-        $contact->save();
+        $contact->update(['replied' => true]);
 
-        $message = array('message' => 'Email Sent Successfully', 'type' => 'success');
-        return redirect()->route('admin.emails.index')->with($message);
+        $message = 'Email Sent Successfully';
+        return $this->successRedirect('admin.emails.index', $message);
     }
 
 }
