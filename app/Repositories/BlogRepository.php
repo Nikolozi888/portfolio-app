@@ -13,6 +13,11 @@ class BlogRepository implements BlogRepositoryInterface
         return Blog::all();
     }
 
+    public function getCountedBlogs($count)
+    {
+        return Blog::latest()->take($count)->get();
+    }
+
     public function getPaginatedBlogs(Request $request, $search)
     {
         return Blog::search($search)->paginate(5);

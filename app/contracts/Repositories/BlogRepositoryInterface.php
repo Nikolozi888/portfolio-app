@@ -9,6 +9,7 @@ interface BlogRepositoryInterface
 {
     public function getAllBlog();
     public function getPaginatedBlogs(Request $request, $search);
+    public function getCountedBlogs($count);
     public function showBlog($slug): Blog;
     public function showBlogs($blog);
     public function previousBlog($blog): Blog;

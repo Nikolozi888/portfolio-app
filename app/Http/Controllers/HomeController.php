@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Repositories\AboutRepositoryInterface;
+use App\Contracts\Repositories\BlogRepositoryInterface;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\Feedback;
@@ -13,15 +15,21 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        public AboutRepositoryInterface $aboutRepository,
+        public BlogRepositoryInterface $blogRepository,
+    )
+    {}
+
     public function index() {
 
         $userInfo = Information::first();
-        $about = About::first();
+        $about = $this->aboutRepository->getAbout();
         $services = Service::latest()->take(5)->get();
         $portfolios = Portfolio::all();
         $partners = Partners::all();
         $feedbacks = Feedback::all();
-        $blogs = Blog::latest()->take(3)->get();
+        $blogs = $this->blogRepository->getCountedBlogs(3);
 
         return view('user.home', compact('userInfo', 'about', 'services', 'portfolios', 'partners', 'feedbacks', 'blogs'));
     }
