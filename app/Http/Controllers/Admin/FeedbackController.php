@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\GetMultiImagePath;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeedbackRequest;
 use App\Models\Feedback;
@@ -10,6 +11,10 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
+    public function __construct(
+        public GetMultiImagePath $getMultiImage
+    )
+    {}
     public function index() {
 
         $feedbacks = Feedback::all();
@@ -28,8 +33,7 @@ class FeedbackController extends Controller
         $gallery_images = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
-                $file_name = $current_timestamp . "-" . ($index + 1) . '.' . $file->extension();
-                $path = $file->storeAs('images', $file_name, 'public');
+                $path = $this->getMultiImage->handle($current_timestamp, $index, $file);
                 $gallery_images[] = 'storage/' . $path;
             }
         }
