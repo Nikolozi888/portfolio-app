@@ -40,7 +40,7 @@
                                     <x-backend.error name="image" />
                                     <div id="imagePreviewContainer" style="margin-top: 10px;"></div>
 
-                                    <img src="{{ asset($multiImage->image) }}" alt="Multi Image" width="100"
+                                    <img src="{{ get_image($multiImage->image) }}" alt="Multi Image" width="100"
                                         style="margin-right: 10px;">
                                 </div>
 

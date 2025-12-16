@@ -3,7 +3,7 @@
         <div class="row align-items-center justify-content-center justify-content-lg-between">
             <div class="col-lg-6 order-0 order-lg-2">
                 <div class="banner__img text-center text-xxl-end">
-                    <img src="{{ asset($userInfo->image) }}" alt="">
+                    <img src="{{ get_image($userInfo->image) }}" alt="">
                 </div>
             </div>
             <div class="col-xl-5 col-lg-6">

@@ -40,8 +40,9 @@
                                     <input type="file" class="form-control" value="{{ $link->icon }}" id="customFile"
                                         name="icon" onchange="previewImage();">
                                     <x-backend.error name="icon" />
-                                    <div id="imagePreviewContainer" style="max-width: 200px; margin-top: 10px; margin-bottom: 20px;"></div>
-                                    <img style="max-width: 200px" src="{{ asset($link->icon) }}" alt="Link Icon">
+                                    <div id="imagePreviewContainer"
+                                        style="max-width: 200px; margin-top: 10px; margin-bottom: 20px;"></div>
+                                    <img style="max-width: 200px" src="{{ get_image($link->icon) }}" alt="Link Icon">
                                 </div>
                                 <div class="mb-3">
                                     <label for="validationCustom01" class="form-label">Link</label>

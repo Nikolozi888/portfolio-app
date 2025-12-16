@@ -60,7 +60,7 @@
                                         name="image" onchange="previewImage();">
                                     <x-backend.error name="image" />
                                     <div id="imagePreviewContainer" style="margin-top: 10px; margin-bottom: 20px;"></div>
-                                    <img width="200px" src="{{ asset($service->image) }}" alt="Blog Image">
+                                    <img width="200px" src="{{ get_image($service->image) }}" alt="Blog Image">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description">Description</label>

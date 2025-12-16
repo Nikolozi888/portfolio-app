@@ -11,7 +11,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.informations.index') }}">Main Page Information</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin.informations.index') }}">Main Page
+                                        Information</a></li>
                                 <li class="breadcrumb-item active">Information index</li>
                             </ol>
                         </div>
@@ -47,19 +48,18 @@
                                                 <td data-field="title">{{ $information->title }}</td>
                                                 <td data-field="excerpt">{!! Str::limit($information->excerpt, 50) !!}</td>
                                                 <td data-field="image"><img style="width: 100px"
-                                                    src="{{ asset($information->image) }}"></td>
+                                                        src="{{ get_image($information->image) }}"></td>
                                                 <td style="width: 100px">
                                                     <a href="{{ route('admin.informations.edit', $information->id) }}"
                                                         class="btn btn-outline-secondary btn-lg edit" title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <form
-                                                        action="{{ route('admin.informations.destroy', $information->id) }}"
+                                                    <form action="{{ route('admin.informations.destroy', $information->id) }}"
                                                         method="POST" class="d-inline delete-form">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit"
-                                                            class="btn btn-outline-secondary btn-lg delete" title="Delete">
+                                                        <button type="submit" class="btn btn-outline-secondary btn-lg delete"
+                                                            title="Delete">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>

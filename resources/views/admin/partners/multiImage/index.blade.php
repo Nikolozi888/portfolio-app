@@ -47,7 +47,7 @@
                                                     <tr data-id="1" style="cursor: pointer;">
                                                         <td data-field="id">{{ $image->id }}</td>
                                                         <td data-field="images">
-                                                            <img src="{{ asset($image->image) }}" alt="Image" width="100">
+                                                            <img src="{{ get_image($image->image) }}" alt="Image" width="100">
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('admin.partners.multiImage.edit', $image->id) }}"

@@ -43,7 +43,7 @@
                                             @foreach ($links as $link)
                                                 <tr data-id="1" style="cursor: pointer;">
                                                     <td data-field="id" style="width: 80px">{{ $link->id }}</td>
-                                                    <td data-field="icon"><img src="{{ asset($link->icon) }}" alt="Icon"></td>
+                                                    <td data-field="icon"><img src="{{ get_image($link->icon) }}" alt="Icon"></td>
                                                     <td data-field="link">{{ $link->link }}</td>
                                                     <td style="width: 100px">
                                                         <a href="{{ route('admin.links.edit', $link->id) }}"

@@ -38,7 +38,7 @@
                 <div class="col-lg-8">
                     <div class="standard__blog__post">
                         <div class="standard__blog__thumb">
-                            <img src="{{ asset($blog->image) }}" alt="">
+                            <img src="{{ get_image($blog->image) }}" alt="">
                         </div>
                         <div class="blog__details__content services__details__content">
                             <ul class="blog__post__meta">
@@ -65,8 +65,7 @@
                                             <div class="blog__next__prev__post">
                                                 <div class="blog__next__prev__thumb">
                                                     <a href="{{ route('blog.show', $previous->slug) }}">
-                                                        <img src="{{ asset($previous->image) }}"
-                                                            alt="">
+                                                        <img src="{{ get_image($previous->image) }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="blog__next__prev__content">
@@ -87,14 +86,12 @@
                                             <div class="blog__next__prev__post">
                                                 <div class="blog__next__prev__thumb">
                                                     <a href="{{ route('blog.show', $next->slug) }}">
-                                                        <img src="{{ asset($next->image) }}"
-                                                            alt="">
+                                                        <img src="{{ get_image($next->image) }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="blog__next__prev__content">
                                                     <h5 class="title">
-                                                        <a
-                                                            href="{{ route('blog.show', $next->slug) }}">{{ $next->title }}</a>
+                                                        <a href="{{ route('blog.show', $next->slug) }}">{{ $next->title }}</a>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -113,7 +110,7 @@
                             <h4 class="widget-title">Recent Blog</h4>
                             <ul class="rc__post">
                                 @foreach ($blogs as $recent_blog)
-                                   <x-frontend.small_post_card :recent_blog="$recent_blog" />
+                                    <x-frontend.small_post_card :recent_blog="$recent_blog" />
                                 @endforeach
 
                             </ul>

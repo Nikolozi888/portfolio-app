@@ -52,8 +52,7 @@
                                                     <td data-field="excerpt">{!! Str::limit($service->excerpt, 50) !!}</td>
                                                     <td data-field="description">{!! Str::limit($service->excerpt, 50) !!}</td>
                                                     <td data-field="tag"><img style="width: 100px"
-                                                            src="{{ asset($service->image) }}"
-                                                            alt="Blog Image">
+                                                            src="{{ get_image($service->image) }}" alt="Blog Image">
                                                     </td>
                                                     <td style="width: 100px">
                                                         <a href="{{ route('admin.services.edit', $service->id) }}"
@@ -64,8 +63,7 @@
                                                             method="POST" class="d-inline delete-form">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-outline-secondary btn-lg delete"
+                                                            <button type="submit" class="btn btn-outline-secondary btn-lg delete"
                                                                 title="Delete">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>

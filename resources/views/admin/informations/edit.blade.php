@@ -52,7 +52,7 @@
                                         onchange="previewImage();">
                                     <x-backend.error name="image" />
                                     <div id="imagePreviewContainer" style="margin-top: 10px;"></div>
-                                    <img width="200px" src="{{ asset($information->image) }}" alt="Image">
+                                    <img width="200px" src="{{ get_image($information->image) }}" alt="Image">
                                 </div>
                                 <div class="mb-3">
                                     <h4 class="card-title">Video Link</h4>

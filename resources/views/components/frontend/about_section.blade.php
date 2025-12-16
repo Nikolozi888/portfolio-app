@@ -5,7 +5,7 @@
                 <ul class="about__icons__wrap">
                     @foreach (App\Models\AboutMultiImages::all() as $image)
                         <li class="now-in-view">
-                            <img class="light" src="{{ asset($image->image) }}" alt="">
+                            <img class="light" src="{{ get_image($image->image) }}" alt="">
                         </li>
                     @endforeach
                 </ul>

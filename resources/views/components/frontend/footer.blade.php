@@ -46,7 +46,7 @@
                             <p>{{ $socialInfo->description }}</p>
                             <ul class="footer__social__list">
                                 @foreach (App\Models\Link::all() as $link)
-                                    <li><a href="{{ $link->link }}"><img style="width: 30px;" src="{{ asset($link->icon) }}"
+                                    <li><a href="{{ $link->link }}"><img style="width: 30px;" src="{{ get_image($link->icon) }}"
                                                 alt="Icon"></a></li>
                                 @endforeach
                             </ul>

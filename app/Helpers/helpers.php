@@ -8,5 +8,12 @@ if(!function_exists('current_user'))
     {
         return Auth::user();
     }
+}
 
+if(!function_exists('get_image'))
+{
+    function get_image($image)
+    {
+        return asset($image) ;
+    }
 }
