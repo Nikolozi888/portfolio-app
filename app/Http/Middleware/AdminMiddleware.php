@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next, string $role): Response
     {
 
-        $user = auth()->user();
+        $user = current_user();
 
         if (!optional($user)->hasRole($role)) {
             return redirect()->route('login');

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function edit() {
-        $user = User::find(auth()->user()->id);
+        $user = User::find(current_user()->id);
 
         return view('admin.profile.edit_profile',compact('user'));
     }

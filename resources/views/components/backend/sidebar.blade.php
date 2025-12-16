@@ -6,7 +6,7 @@
         <div class="user-profile text-center mt-3">
 
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">{{ auth()->user()->name }}</h4>
+                <h4 class="font-size-16 mb-1">{{ current_user()->name }}</h4>
 
             </div>
         </div>

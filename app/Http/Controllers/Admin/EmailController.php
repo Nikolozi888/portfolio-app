@@ -22,7 +22,7 @@ class EmailController extends Controller
         event(new ReplyEmailEvent(
             $contact,
             $validated['body'],
-            auth()->user()->email
+            current_user()->email
         ));
 
         $contact->update(['replied' => true]);
