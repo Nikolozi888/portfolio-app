@@ -25,7 +25,9 @@ class SessionsController extends Controller
     {
         $attributes = $request->validated();
 
-        $this->loginUser->handle($attributes);
+        if ($this->loginUser->handle($attributes)) {
+            return redirect()->route('admin.index');
+        }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

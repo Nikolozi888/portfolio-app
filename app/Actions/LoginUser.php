@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginUser
 {
-    public function handle(Request $request, $attributes)
+    public function handle($attributes): bool
     {
         if (Auth::attempt($attributes)) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.index');
+            session()->regenerate();
+            return true;
         }
+
+        return false;
     }
 }
