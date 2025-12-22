@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="validationCustom01" class="form-label">Link</label>
-                                    <input type="text" class="form-control" id="valid                     ationCustom01"
+                                    <input type="text" class="form-control" id="validationCustom01"
                                         placeholder="Link" name="link" value="{{ old('link') }}">
                                     <x-backend.error name="link" />
                                 </div>
