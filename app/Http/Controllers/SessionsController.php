@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\LoginUser;
 use App\Actions\LogoutUser;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
@@ -12,6 +13,7 @@ class SessionsController extends Controller
 {
     public function __construct(
         public LogoutUser $logoutUser,
+        public LoginUser $loginUser,
     )
     {}
     public function create()
@@ -23,10 +25,7 @@ class SessionsController extends Controller
     {
         $attributes = $request->validated();
 
-        if (Auth::attempt($attributes)) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.index');
-        }
+        $this->loginUser->handle($attributes);
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
