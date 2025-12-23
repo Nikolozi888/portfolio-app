@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\ServiceRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
@@ -9,9 +10,14 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function __construct(
+        public ServiceRepositoryInterface $serviceRepository
+    )
+    {}
+
     public function index()
     {
-        $services = Service::all();
+        $services = $this->serviceRepository->getAllServices();
 
         return view('admin.services.index', compact('services'));
     }
@@ -31,7 +37,7 @@ class ServiceController extends Controller
             $attributes['image'] = 'storage/' . $imagePath;
         }
 
-        Service::create($attributes);
+        $this->serviceRepository->createService($attributes);
 
         $message = array('message' => 'Service Created SuccessFully', 'type' => 'success');
         return redirect()->route('admin.services.index')->with($message);
@@ -54,7 +60,7 @@ class ServiceController extends Controller
             $attributes['image'] = $service->image;
         }
 
-        $service->update($attributes);
+        $this->serviceRepository->update($service, $attributes);
 
         $message = array('message' => 'Service Updated SuccessFully', 'type' => 'success');
         return redirect()->route('admin.services.index')->with($message);
@@ -62,7 +68,7 @@ class ServiceController extends Controller
 
     public function destroy(Service $service)
     {
-        $service->delete();
+        $this->serviceRepository->deleteService($service);
 
         $message = array('message' => 'Service Deleted SuccessFully', 'type' => 'success');
         return redirect()->route('admin.services.index')->with($message);

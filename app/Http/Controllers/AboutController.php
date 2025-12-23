@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Repositories\AboutRepositoryInterface;
+use App\Contracts\Repositories\ServiceRepositoryInterface;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\Feedback;
@@ -16,12 +17,13 @@ class AboutController extends Controller
 {
     public function __construct(
         public AboutRepositoryInterface $aboutRepository,
+        public ServiceRepositoryInterface $serviceRepository,
     )
     {}
 
     public function index() {
         $about = $this->aboutRepository->getAbout();
-        $services = Service::all();
+        $services = $serviceRepository->getAllServices();
         $feedbacks = Feedback::all();
         $blogs = Blog::all();
 

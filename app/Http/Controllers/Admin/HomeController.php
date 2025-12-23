@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\ServiceRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Models\AboutMultiImages;
 use App\Models\Blog;
@@ -17,16 +18,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        public ServiceRepositoryInterface $serviceRepository
+    )
+    {}
+
     public function index()
     {
-
         $emails = Contact::where('replied', 0)->get();
         $blogs = Blog::all();
         $categories = Category::all();
         $feedbacks = Feedback::all();
         $partners = Partners::all();
         $portfolios = Portfolio::all();
-        $services = Service::all();
+        $services = $this->serviceRepository->getAllServices();
         $tags = Tag::all();
         $aboutMultiImages = AboutMultiImages::all();
         $partnerMultiImages = PartnerMultiImages::all();
