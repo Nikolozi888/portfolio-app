@@ -28,7 +28,7 @@ class AboutMultiImagesRepository implements AboutMultiImagesRepositoryInterface
     {
         $model->update($data);
     }
-    
+
     public function deleteImage($model)
     {
         $model->delete();

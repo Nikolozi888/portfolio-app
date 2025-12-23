@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Contracts\Repositories\AboutMultiImagesRepositoryInterface;
 use App\Contracts\Repositories\BlogRepositoryInterface;
 use App\Contracts\Repositories\ServiceRepositoryInterface;
 use App\Http\Controllers\Controller;
@@ -22,6 +23,7 @@ class HomeController extends Controller
     public function __construct(
         public ServiceRepositoryInterface $serviceRepository,
         public BlogRepositoryInterface $blogRepository,
+        public AboutMultiImagesRepositoryInterface $aboutMultiImagesRepository
     )
     {}
 
@@ -35,7 +37,7 @@ class HomeController extends Controller
         $portfolios = Portfolio::all();
         $services = $this->serviceRepository->getAllServices();
         $tags = Tag::all();
-        $aboutMultiImages = AboutMultiImages::all();
+        $aboutMultiImages = $this->aboutMultiImagesRepository->getAllImages();
         $partnerMultiImages = PartnerMultiImages::all();
 
         return view('admin.index', compact('blogs', 'categories', 'feedbacks', 'partners', 'portfolios', 'services', 'tags', 'aboutMultiImages', 'partnerMultiImages', 'emails'));
