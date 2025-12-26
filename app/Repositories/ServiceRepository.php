@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Contracts\Repositories\ServiceRepositoryInterface;
 use App\Models\Service;
 
-class ServiceRepository
+class ServiceRepository implements ServiceRepositoryInterface
 {
     public function getAllServices()
     {
